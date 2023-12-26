@@ -36,3 +36,72 @@
     transform: rotate(360deg);
   }
 }
+.sidemenu{
+  background-color: black;
+  height: 100vh;
+}
+.sub{
+  color: white;
+  font-size: 14px;
+  margin-top: 60px;
+}
+.position-relative{
+  position: relative;
+}
+.logo-wrapper{
+position: absolute;
+bottom: 0px;
+}
+.title-text{
+font-size: 28px;
+font-weight: 600;
+line-height: 36px;
+letter-spacing: 0em;
+}
+.poweredby{
+  position: absolute;
+  bottom: 40px;
+  right:40px;
+}
+.return-to-login-text{
+  color: black;
+}
+.timer-text1{
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(22, 23, 29, 1);
+}
+
+.timer-text2{
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.Dashboard-items{
+  list-style: none;
+}
+
+.Dashboard-items li a{
+margin-top: 20px;
+justify-items: center;
+align-items: center;
+display: flex;
+font-size: 16px;
+color: rgba(138, 139, 142, 1);
+text-decoration: none;
+}
+
+.Dashboard-items li span{
+margin-left: 10px;
+}
+.Dashboard-items .active{
+  color: white;
+}
+.main-scrollable{
+  height: 75vh;
+  overflow: scroll;
+}
+.fCap {
+  text-transform: capitalize;
+}
