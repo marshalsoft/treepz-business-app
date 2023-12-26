@@ -17,9 +17,9 @@ export default function DashboardScreen() {
         <Logo />
         <ul className='sub Dashboard-items'>
         {DashboardNavItems.map((a,i)=>{
-        var active = location.pathname == a.link;
+        var active = location.pathname === a.link;
          var icon =  <DashboardIcon color={active?"rgba(248, 176, 43, 1)":"rgba(138, 139, 142, 1)"} />; 
-         if(i == 1)
+         if(i === 1)
          {
             icon = <PersonalListIcon color={active?"rgba(248, 176, 43, 1)":"rgba(138, 139, 142, 1)"} /> 
          } 
