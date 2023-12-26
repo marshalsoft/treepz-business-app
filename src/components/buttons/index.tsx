@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes } from 'react';
+import { CSSProperties } from 'react';
 import './style.css';
 import { NavLink } from 'react-router-dom';
 interface BaseButtonProps {

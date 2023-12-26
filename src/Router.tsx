@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import logo from './logo.svg';
 import './App.css';
 import { CONSTANTS } from './includes/constant';
 import LoginScreen from './screens/login';
@@ -9,7 +8,7 @@ import OTPScreen from './screens/otp';
 import DashboardScreen from './screens/dashboard';
 import DashboardSection from './screens/dashboard/sections/dashboard';
 import PersonnelSection from './screens/dashboard/sections/personnel';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (<BrowserRouter>

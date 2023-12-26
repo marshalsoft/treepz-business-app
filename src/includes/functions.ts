@@ -1,5 +1,5 @@
 
-import { toast, ToastContainer} from 'react-toastify';
+import { toast} from 'react-toastify';
 
 export interface APIResponse {
     status:boolean;

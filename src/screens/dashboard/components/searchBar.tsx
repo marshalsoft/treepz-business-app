@@ -1,4 +1,4 @@
-import { BaseButton, LightYellowButton } from "../../../components/buttons"
+import { BaseButton } from "../../../components/buttons"
 import { ExportIcon, FilterIcon, Searchicon } from "../icon"
 
 export const SearchBar = ()=>{

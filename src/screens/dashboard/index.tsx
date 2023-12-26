@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 import { Logo } from '../../components/Logo'
 import { LogoDesign } from '../../components/LogoDesign'
-import { PoweredByComponent } from '../../components/PoweredBy'
-import BaseInput from '../../components/baseInput'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
-import { CONSTANTS, DashboardNavItems } from '../../includes/constant'
-import { PostRequest } from '../../includes/functions';
-import { ToastContainer, toast } from 'react-toastify';
-import { CalendarIcon, CaretDownIcon, DashboardIcon, LockIcon, LogoutIcon, PersonIcon, PersonalListIcon, SettingsIcon, UnLockIcon } from './icon'
+import { DashboardNavItems } from '../../includes/constant'
+import {  DashboardIcon, LogoutIcon, PersonalListIcon, SettingsIcon } from './icon'
 import './style.css';
-import { SearchBar } from './components/searchBar'
 import { BaseLoader } from '../../components/baseloader'
+
 export default function DashboardScreen() {
   const [loading,setLoading] = useState(false);
   const location = useLocation();

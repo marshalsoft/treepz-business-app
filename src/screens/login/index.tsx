@@ -6,10 +6,10 @@ import BaseInput from '../../components/baseInput'
 import { NavLink } from 'react-router-dom'
 import { CONSTANTS } from '../../includes/constant'
 import { BaseButton } from '../../components/buttons'
-import { Formik, FormikHelpers, FormikValues } from 'formik';
+import { Formik} from 'formik';
 import * as y from 'yup';
 import { PostRequest } from '../../includes/functions';
-import { ToastContainer, toast } from 'react-toastify';
+
 const schema = y.object({
     email:y.string().required().email("A valid email is required."),
     password:y.string().required()

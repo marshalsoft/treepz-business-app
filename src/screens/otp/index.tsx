@@ -2,11 +2,9 @@ import React, { useRef, useState } from 'react'
 import { Logo } from '../../components/Logo'
 import { LogoDesign } from '../../components/LogoDesign'
 import { PoweredByComponent } from '../../components/PoweredBy'
-import BaseInput from '../../components/baseInput'
-import { NavLink, Navigate, useNavigation } from 'react-router-dom'
 import { CONSTANTS } from '../../includes/constant'
 import { BaseButton, LightYellowButton } from '../../components/buttons'
-import { Formik, FormikValues } from 'formik';
+import { Formik } from 'formik';
 import * as y from 'yup';
 import { GoBackIcon } from '../../assets/icons/BackIcon'
 
@@ -21,12 +19,12 @@ export default function OTPScreen() {
  const max:number = 30;
  const TimeCounter = useRef(null) as any;
  const CountDown = ()=>{
-  if(timer != 0)
+  if(timer !== 0)
   {
     return ;
   }
   TimeCounter.current = setInterval(()=>{
-    if(timer == max)
+    if(timer === max)
     {
     setTime((timer)=>0);
     clearInterval(TimeCounter.current);

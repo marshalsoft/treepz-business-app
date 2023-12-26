@@ -1,7 +1,6 @@
 import React, { ChangeEventHandler, useState } from 'react'
 import './style.css';
 import { EyeClose, EyeOpen } from '../../assets/icons/eye';
-import { useFormikContext, Formik, Form, Field } from 'formik';
 interface BaseInputProps {
     id?:string;
     label?:string;
@@ -19,12 +18,11 @@ interface BaseInputProps {
 }
 export default function BaseInput(props:BaseInputProps) {
  const [toggleEye,setToggleEye] = useState(false)
- const {errors} = useFormikContext()
  return (<>
  <div className="mb-3 input-wrapper">
   {props?.label && <label htmlFor={props.name} className="form-label">Email address</label>}
   <input 
-  type={props.type == "password"?toggleEye?"text":"password":props.type}
+  type={props.type === "password"?toggleEye?"text":"password":props.type}
    className="form-control" 
    required={props.required}
    id={props.id} 
@@ -32,7 +30,7 @@ export default function BaseInput(props:BaseInputProps) {
   placeholder={props.placeholder}
   onChange={props.onValueChange}
    />
-   {props.type == "password" && <span
+   {props.type === "password" && <span
    onClick={()=>setToggleEye(!toggleEye)} className='input-icon'>
     {!toggleEye?<EyeOpen />:<EyeClose />}
    </span>}

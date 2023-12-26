@@ -1,13 +1,5 @@
-import React, { useState } from 'react'
-import { Logo } from '../../../components/Logo'
-import { LogoDesign } from '../../../components/LogoDesign'
-import { PoweredByComponent } from '../../../components/PoweredBy'
-import BaseInput from '../../../components/baseInput'
-import { NavLink, useLocation } from 'react-router-dom'
-import { CONSTANTS, DashboardNavItems } from '../../../includes/constant'
-import { PostRequest } from '../../../includes/functions';
-import { ToastContainer, toast } from 'react-toastify';
-import { CalendarIcon, CaretDownIcon, DashboardIcon, LockIcon, LogoutIcon, PersonIcon, PersonalListIcon, SettingsIcon, UnLockIcon } from '../icon'
+import React from 'react'
+import { CalendarIcon, CaretDownIcon, LockIcon,PersonIcon,UnLockIcon } from '../icon'
 import './../style.css';
 import { SearchBar } from '../components/searchBar'
 export default function DashboardSection(){
@@ -54,9 +46,9 @@ export default function DashboardSection(){
     </div>
     <div className='col-4 p-3 position-relative'>
     <div className='circle'>
-    {i == 0 && <PersonIcon />}
-    {i == 1 && <LockIcon />}
-    {i == 2 && <UnLockIcon />}
+    {i === 0 && <PersonIcon />}
+    {i === 1 && <LockIcon />}
+    {i === 2 && <UnLockIcon />}
     </div>    
     </div>
     </div>
