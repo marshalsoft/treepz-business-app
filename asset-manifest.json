@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/treepz-business-app/static/css/main.114b24bc.css",
+    "main.js": "/treepz-business-app/static/js/main.b057f81c.js",
+    "static/js/787.f781c589.chunk.js": "/treepz-business-app/static/js/787.f781c589.chunk.js",
+    "index.html": "/treepz-business-app/index.html",
+    "main.114b24bc.css.map": "/treepz-business-app/static/css/main.114b24bc.css.map",
+    "main.b057f81c.js.map": "/treepz-business-app/static/js/main.b057f81c.js.map",
+    "787.f781c589.chunk.js.map": "/treepz-business-app/static/js/787.f781c589.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.114b24bc.css",
+    "static/js/main.b057f81c.js"
+  ]
+}
