@@ -3,7 +3,7 @@ import { Logo } from '../../components/Logo'
 import { LogoDesign } from '../../components/LogoDesign'
 import { PoweredByComponent } from '../../components/PoweredBy'
 import BaseInput from '../../components/baseInput'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { CONSTANTS } from '../../includes/constant'
 import { BaseButton } from '../../components/buttons'
 import { Formik} from 'formik';
@@ -16,16 +16,13 @@ const schema = y.object({
     })
 export default function LoginScreen() {
   const [loading,setLoading] = useState(false);
-  
+  const navigate = useNavigate()
   const UserLogin = (values:any)=>{
     setLoading(true);
     PostRequest("login",values).then((response)=>{
       setLoading(false);
-      if(!response.status)
-      {
-        localStorage.setItem("token","k");
-        window.location.href = "/"+CONSTANTS.Routes.Dashboard
-      }
+      localStorage.setItem("token","k");
+      navigate("/"+CONSTANTS.Routes.Dashboard)
     })
   }
 

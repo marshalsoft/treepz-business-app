@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Logo } from '../../components/Logo'
 import { LogoDesign } from '../../components/LogoDesign'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
-import { DashboardNavItems } from '../../includes/constant'
+import { NavLink, Navigate, Outlet, useLocation } from 'react-router-dom'
+import { CONSTANTS, DashboardNavItems } from '../../includes/constant'
 import {  DashboardIcon, LogoutIcon, PersonalListIcon, SettingsIcon } from './icon'
 import './style.css';
 import { BaseLoader } from '../../components/baseloader'
@@ -10,6 +10,10 @@ import { BaseLoader } from '../../components/baseloader'
 export default function DashboardScreen() {
   const [loading,setLoading] = useState(false);
   const location = useLocation();
+  if(!localStorage.getItem("token"))
+  {
+   return <Navigate to={"/"+CONSTANTS.Routes.Login} />
+  }
 
   return (<div className='row'>
      <div className='col-3 sidemenu position-relative' >
