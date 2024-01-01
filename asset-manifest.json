@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/treepz-business-app/static/css/main.114b24bc.css",
-    "main.js": "/treepz-business-app/static/js/main.91b0975c.js",
+    "main.css": "/treepz-business-app/static/css/main.7d959ec2.css",
+    "main.js": "/treepz-business-app/static/js/main.37d369e5.js",
     "static/js/787.f781c589.chunk.js": "/treepz-business-app/static/js/787.f781c589.chunk.js",
     "index.html": "/treepz-business-app/index.html",
-    "main.114b24bc.css.map": "/treepz-business-app/static/css/main.114b24bc.css.map",
-    "main.91b0975c.js.map": "/treepz-business-app/static/js/main.91b0975c.js.map",
+    "main.7d959ec2.css.map": "/treepz-business-app/static/css/main.7d959ec2.css.map",
+    "main.37d369e5.js.map": "/treepz-business-app/static/js/main.37d369e5.js.map",
     "787.f781c589.chunk.js.map": "/treepz-business-app/static/js/787.f781c589.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.114b24bc.css",
-    "static/js/main.91b0975c.js"
+    "static/css/main.7d959ec2.css",
+    "static/js/main.37d369e5.js"
   ]
 }
