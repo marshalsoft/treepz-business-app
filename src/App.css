@@ -105,3 +105,20 @@ margin-left: 10px;
 .fCap {
   text-transform: capitalize;
 }
+.modal{
+  background-color: rgba(0,0,0,0.4) !important;
+  display: block !important;
+}
+.filePickerContainer{
+overflow: hidden;
+padding: relative;
+}
+.filePicker{
+  width:100px;
+  height: 80px;
+  position: absolute;
+  top:0px;
+  left:0px;
+  opacity: 0 !important;
+  cursor: pointer;
+}

@@ -20,7 +20,7 @@ export default function BaseInput(props:BaseInputProps) {
  const [toggleEye,setToggleEye] = useState(false)
  return (<>
  <div className="mb-3 input-wrapper">
-  {props?.label && <label htmlFor={props.name} className="form-label">Email address</label>}
+  {props?.label && <label htmlFor={props.name} className="form-label">{props?.label}</label>}
   <input 
   type={props.type === "password"?toggleEye?"text":"password":props.type}
    className="form-control" 

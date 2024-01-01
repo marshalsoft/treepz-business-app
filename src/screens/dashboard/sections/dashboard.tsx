@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CalendarIcon, CaretDownIcon, LockIcon,PersonIcon,UnLockIcon } from '../icon'
 import './../style.css';
 import { SearchBar } from '../components/searchBar'
+import { AddPersonnelComponent } from '../components/addPersonnel';
+import { ImportPersonnelComponent } from '../components/importPersonnel';
 export default function DashboardSection(){
+  const [showAddPersonnel,setShowAddPersonnel] = useState<boolean>(false)
+  const [showImportPersonnel,setShowImportPersonnel] = useState<boolean>(false)
     const tabs = [
         {class:"yellow-card",title:"Total Employees",amount:"2000"},
         {class:"black-card",title:"Total Check-ins",amount:"1000"},
@@ -55,7 +59,14 @@ export default function DashboardSection(){
   </div>
     </div>)}
     </div>
-   <SearchBar />
+   <SearchBar 
+   onSearch={()=>{
+
+   }}
+   onAddPersonnel={()=>setShowAddPersonnel(true)}
+    onExportPersonnel={()=>{ }}
+    onImportPersonnel={()=>setShowImportPersonnel(true)}
+   />
    <table className="table">
 <thead>
 <tr>
@@ -80,5 +91,11 @@ export default function DashboardSection(){
 </tr>)}
 </tbody>
 </table>
-    </div>
+{showAddPersonnel && <AddPersonnelComponent 
+onClose={()=>setShowAddPersonnel(false)}
+/>}
+{showImportPersonnel && <ImportPersonnelComponent 
+onClose={()=>setShowImportPersonnel(false)}
+/>}
+</div>
 }

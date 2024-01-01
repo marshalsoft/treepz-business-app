@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './../style.css';
 import { SearchBar } from '../components/searchBar';
 import { useLocation } from 'react-router-dom';
+import { AddPersonnelComponent } from '../components/addPersonnel';
+import { ImportPersonnelComponent } from '../components/importPersonnel';
 export default function PersonnelSection(){
   const location = useLocation();
+  const [showAddPersonnel,setShowAddPersonnel] = useState<boolean>(false)
+  const [showImportPersonnel,setShowImportPersonnel] = useState<boolean>(false)
 return <div className='main-scrollable p-5 pt-0' >
   <div className="heading mb-3">
     <b className='fCap'>{String(location.pathname).replace("/dashboard/","").replace("/","").replace("_"," ")}</b></div>
-<SearchBar />
+    <SearchBar 
+   onSearch={()=>{
+
+   }}
+   onAddPersonnel={()=>setShowAddPersonnel(true)}
+    onExportPersonnel={()=>{ }}
+    onImportPersonnel={()=>setShowImportPersonnel(true)}
+   />
 <table className="table">
 <thead>
 <tr>
@@ -32,5 +43,11 @@ return <div className='main-scrollable p-5 pt-0' >
 </tr>)}
 </tbody>
 </table>
+{showAddPersonnel && <AddPersonnelComponent 
+onClose={()=>setShowAddPersonnel(false)}
+/>}
+{showImportPersonnel && <ImportPersonnelComponent 
+onClose={()=>setShowImportPersonnel(false)}
+/>}
 </div>
 }
