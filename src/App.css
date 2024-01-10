@@ -122,3 +122,98 @@ padding: relative;
   opacity: 0 !important;
   cursor: pointer;
 }
+.btn-inactive{
+  width: 103px;
+  height: 44px;
+  padding: 12px, 24px, 12px, 24px;
+  border-radius: 8px;
+  border: 1px;
+  background-color:#93939373;
+}
+.btn-yellow{
+width: 132px;
+height: 44px;
+padding: 12px, 24px, 12px, 24px;
+border-radius: 8px;
+background-color: #F8B02B;
+}
+.error{
+  color: red;
+  font-size: 12px;
+}
+.emailContainer{
+  gap: 4px;
+  display: flex;
+}
+.emailItem{
+  display: flex;
+  height: 28px;
+  padding:2.8px 10px;
+  border-radius: 4px;
+  border: 0.6px;
+  border: 0.6px solid #A0A3A6;
+  background-color:white;
+  text-align: center;
+  vertical-align: middle;
+  margin: 5px 2px;
+  font-size: 12px;
+}
+.noborder{
+  border: none;
+  outline: none;
+}
+.input-wrapper-b{
+  border: solid 1px #ddd;
+  background-color: red;
+}
+.btn-close-b{
+font-size: 8px;
+margin-left: 5px;
+margin-top: 3.5px;
+}
+.form-control input{
+  width: 100%;
+}
+.pl-c .nav-link{
+color: #282c34;
+padding: 0px 10px;
+}
+.pl-c .nav-link-active{
+color: orange;
+}
+.dropdown-wrp{
+  position: relative;
+}
+.dropdown-cnt{
+  position: absolute;
+  bottom: -100px;
+  right: 0px;
+  background-color: white;
+  z-index: 9999;
+}
+.dropdown-cnt ul{
+list-style: none;
+padding:5px 10px;
+background-color: white;
+}
+.dropdown-cnt ul li{
+  display: flex;
+  align-items: center;
+  width: 140px;
+  font-size: 14px;
+  padding: 10px 0px;
+  cursor: pointer;
+  }
+  .dropdown-cnt ul li span{
+    padding-left: 5px;
+  }
+  .btn-close{
+    font-size: 14px;
+  }
+  .dx{
+    color: #6F7174;
+    font-size: small;
+  }
+  .dxx{
+    font-size: medium;
+  }

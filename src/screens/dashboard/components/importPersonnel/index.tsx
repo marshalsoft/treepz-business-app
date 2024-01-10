@@ -1,10 +1,13 @@
-import React, { ChangeEventHandler, useState } from "react"
+import React, { ChangeEventHandler, useState,useCallback } from "react"
+import Dropzone from 'react-dropzone';
 import BaseInput from "../../../../components/baseInput";
 import { BaseButton } from "../../../../components/buttons";
 import { Formik} from 'formik';
 import * as y from 'yup';
 import { PostRequest } from '../../../../includes/functions';
 import { CSVFileIcon, TrashIcon } from "../../icon";
+import CloudIcon from "../../../../assets/icons/cloudIcon";
+import DotIcon from "../../../../assets/icons/dot";
 const schema = y.object({
     firstname:y.string().required("First name is required."),
     lastname:y.string().required("Last name is required.")
@@ -12,36 +15,33 @@ const schema = y.object({
 interface ImportPersonnelComponentprops {
 onClose:()=>void;
 }
+
+
 export const ImportPersonnelComponent = (props:ImportPersonnelComponentprops)=>{
-    const [loading,setLoading] = useState<boolean>(false)
+ 
+  const [loading,setLoading] = useState<boolean>(false)
     const [uploading,setUpLoading] = useState<boolean>(false)
   return  <div className="modal" tabIndex={-1} >
     <div className="modal-dialog">
-      <div className="modal-content">
+      <div className="modal-content" style={{borderRadius:20,marginTop:100}}>
         <div className="modal-header">
-          <h5 className="modal-title">Import Personnel</h5>
+          <h5 className="modal-title">Upload CSV</h5>
           <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={props.onClose}></button>
         </div>
-<div className="modal-body p-5">
-<p>Select a CVS file to import personnel list</p>
-
-    <div className="alert alert-success" role="alert" >
-        <div className="row" >
-        <div className="col-2 filePickerContainer" >
-        <CSVFileIcon />
-        <input
-        className="filePicker"
-        type="file"
-        accept="text/csv"
-        />
-        </div>
-        <div className="col-10" >
-        <small>Click the icon to select a CVS file</small>
-        </div>
-        </div>
-        
-    </div>
-<Formik
+<div className="modal-body p-3 pb-5">
+<p>Upload a CSV to quickly import employee details and create users</p>
+<Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)} >
+  {({getRootProps, getInputProps}) => (<div className="card text-center p-5" style={{backgroundColor:"#DEE0E3"}} >
+          <center>
+          <CloudIcon />
+          </center>
+        <small className="dx">Drag your file here to upload</small>
+   <div className="dxx">Browse files <span className="py-5">
+    <DotIcon />
+    </span> Download sample CSV</div>
+    </div> )}
+</Dropzone>
+{/* <Formik
 onSubmit={(values)=>{
 
 }}
@@ -86,7 +86,7 @@ initialValues={{
         >Save</BaseButton>
         </div>
        }
-     </Formik>
+     </Formik> */}
         </div>
       </div>
     </div>

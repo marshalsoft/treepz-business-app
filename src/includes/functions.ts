@@ -49,3 +49,10 @@ fetch(`${process.env.BaseURL}${uri}`,options).then((res)=>res.json()).then((res:
 })
 })
 }
+export const ValidateEmail = (value:string)=>{
+    const valid = value.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    return valid;
+  }
+  

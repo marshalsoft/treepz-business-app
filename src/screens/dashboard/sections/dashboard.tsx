@@ -60,6 +60,7 @@ export default function DashboardSection(){
     </div>)}
     </div>
    <SearchBar 
+   page='dashboard'
    onSearch={()=>{
 
    }}

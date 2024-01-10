@@ -1,7 +1,11 @@
 import React, { ChangeEventHandler, useState } from 'react'
 import './style.css';
 import { EyeClose, EyeOpen } from '../../assets/icons/eye';
+import { ValidateEmail } from '../../includes/functions';
 interface BaseInputProps {
+    arrayList?:boolean;
+    filterValue?:(d:any)=>void;
+    error?:any;
     id?:string;
     label?:string;
     disabled?:boolean;
@@ -17,16 +21,40 @@ interface BaseInputProps {
     options?:{value:string;name:string;}[];
 }
 export default function BaseInput(props:BaseInputProps) {
- const [toggleEye,setToggleEye] = useState(false)
- return (<>
- <div className="mb-3 input-wrapper">
-  {props?.label && <label htmlFor={props.name} className="form-label">{props?.label}</label>}
+ const [toggleEye,setToggleEye] = useState(false);
+ const [list,setList]= useState<string[]>([]);
+var stringList:string[] = [];
+if(typeof props.value == "string")
+{
+  String(props.value).split(",").map((a,i)=>{
+  if(ValidateEmail(a))
+  {
+    stringList.push(a)
+  }
+})
+}
+ return (<div className="mb-3">
+  {props?.label && <label htmlFor={props.name} className="form-label" style={{position:"relative"}}>{props?.label}{props.required?<span className='error' style={{position:"absolute",right:-10,top:-8,fontSize:20}}>*</span>:""}</label>}
+ <div className={`${props.arrayList?"form-control":"input-wrapper"}`}>
+  {props.arrayList && <div className='emailContainer'>
+    {stringList.map((a:string,i:number,self:string[])=>{
+      return <span className='emailItem' key={i} >{a} <button type="button" onClick={()=>{
+        if(props.filterValue)
+        {
+        props.filterValue(self.filter((b,o)=>i !== o))
+        }
+      }} className="btn-close btn-close-b" ></button>
+      </span>
+      
+    })}
+    </div>}
   <input 
   type={props.type === "password"?toggleEye?"text":"password":props.type}
-   className="form-control" 
+   className={props.arrayList?"noborder":"form-control"} 
    required={props.required}
    id={props.id} 
    name={props.name} 
+   value={props.value}
   placeholder={props.placeholder}
   onChange={props.onValueChange}
    />
@@ -35,8 +63,8 @@ export default function BaseInput(props:BaseInputProps) {
     {!toggleEye?<EyeOpen />:<EyeClose />}
    </span>}
 </div>
-
-</>
+{props?.error?<div className='error' >{props.error}</div>:null}
+</div>
   )
 }
 
