@@ -1,12 +1,12 @@
 import { ChangeEventHandler } from "react"
-import { BaseButton } from "../../../components/buttons"
+import { BaseButton, WhiteButton } from "../../../components/buttons"
 import { AddEmployeeIcon, ExportIcon, FilterIcon, Searchicon } from "../icon"
 interface SearchBarProps {
     onSearch:ChangeEventHandler<HTMLInputElement>;
     onAddPersonnel:()=>void;
     onImportPersonnel:()=>void;
     onExportPersonnel:()=>void;
-    page:"dashboard"|"personnel"
+    page:"data"|"history"
 }
 export const SearchBar = (props:SearchBarProps)=>{
     return  <div className='row pb-3' >
@@ -18,48 +18,21 @@ export const SearchBar = (props:SearchBarProps)=>{
      <span className="searchbar-icon" >
      <Searchicon />
      </span>
-     <span 
-     className="bx ms-3 btn"
-     >
-    <FilterIcon />
-    <span className="ms-1">Filter</span>
-     </span>
     </div>
     <div className="col-7">
-    <div className="row">
-    {props.page == "dashboard"?<div className="col-4">
-    
-    </div>:null}
-    {props.page == "dashboard"?<div className="col-4">
-   
-    </div>:null}  
-    <div className="col-4">
-    <BaseButton
+    <div className="d-flex align-items-center justify-content-end">
+    <WhiteButton
     onClick={props.onExportPersonnel}
-    style={{backgroundColor:props.page == "personnel"?"white":"",borderColor:props.page == "personnel"?"#999":""}}
     >
 <ExportIcon />
 <span className="ps-2">Export CSV</span>
-    </BaseButton>
-    </div>
-    {props.page == "personnel"?<div className="col-4">
-        <BaseButton
-    onClick={props.onImportPersonnel}
-    style={{paddingLeft:5,paddingRight:5,width:160}}
-    >
-<ExportIcon />
-<span className="ps-2">Import Personnel</span>
-    </BaseButton>
-    </div>:null}
-    {props.page == "personnel"?<div className="col-4">
-    <BaseButton
+    </WhiteButton>
+    {props.page === "data"?<BaseButton
     onClick={props.onAddPersonnel}
     style={{paddingLeft:5,paddingRight:5,width:150}}
     >
-    <AddEmployeeIcon />
-    <span className="ps-2">Add employee</span>
-    </BaseButton>
-    </div>:null}
+    <span className="ps-2">Add new employee</span>
+    </BaseButton>:null}
     </div>
     </div>
     </div>

@@ -15,7 +15,17 @@ interface LightYellowButtonProps {
 export const BaseButton = (props:BaseButtonProps)=>{
     return <button 
     onClick={props.onClick}
-    className="base-button btn"
+    className="base-button"
+    style={props.style}
+    >
+ {props.loading?<div className="spinner-border spinner-border-sm" role="status">
+</div>:props.children}
+    </button>
+}
+export const WhiteButton = (props:BaseButtonProps)=>{
+    return <button 
+    onClick={props.onClick}
+    className="base-button-white"
     style={props.style}
     >
  {props.loading?<div className="spinner-border spinner-border-sm" role="status">

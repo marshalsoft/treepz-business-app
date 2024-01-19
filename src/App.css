@@ -1,3 +1,6 @@
+body{
+  font-family: 'Inter', sans-serif;
+}
 .App {
   text-align: center;
 }
@@ -216,4 +219,71 @@ background-color: white;
   }
   .dxx{
     font-size: medium;
+  }
+  .table-title{
+      font-family: "Switzer", sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 32px;
+      letter-spacing: 0em;
+      text-align: left;
+  }
+  .chart-title{
+    font-family: "Switzer", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: -0.012em;
+  }
+  .chart-date{
+    font-family: "Switzer", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.10000000149011612px;
+  }
+  .chart-tabs-container{
+    width: 288px;
+    height: 40px;
+    border-radius: 8px;
+    background: #F7F7F7;
+    box-shadow: 0px 1px 10px 0px #00000014 inset;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 3px;
+  }
+  .chart-tabs-active{
+  background-color: white;
+  }
+  .chart-tabs-container .col-4{
+    font-family: "Switzer", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+  }
+  .c-box-checkin{
+    width: 16px;
+    height: 16px;
+    background-color: #3B6FE9;
+  }
+  .cb-txt{
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .c-box-checkout{
+    width: 16px;
+    height: 16px;
+    background-color: #F8B02B;
+  }
+  .selected-tab{
+    border-bottom:solid 2px #F8B02B;
+    border-radius: 0px;
   }

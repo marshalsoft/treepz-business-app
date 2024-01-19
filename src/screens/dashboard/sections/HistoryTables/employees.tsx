@@ -3,9 +3,16 @@ import EditIcon from "../../../../assets/icons/editIcon";
 import TrashIcon from "../../../../assets/icons/trashIcon";
 import { ConfirmDialogComponent } from "../../components/confirmDialog";
 import { EditUserComponent } from "../../components/editUser";
+import { Pagination } from "../../../../components/pagination";
 const EmployeesTable = ()=>{
   const [showConfirmDailog,setShowConfirmDailog] = useState<boolean>(false);
   const [showEditUser,setShowEditUser] = useState<boolean>(false);
+  const [list,setList] = useState(Array.from({length:12}).map((a,i)=>{
+    return {
+      id:i,
+      
+    }
+  }))
 return <>
 <table className="table">
 <thead>
@@ -21,7 +28,7 @@ return <>
 </tr>
 </thead>
 <tbody>
-{Array.from({length:12}).map((a,i)=><tr key={i}>
+{list.map((a,i)=><tr key={i}>
   <th scope="row">{i+1}</th>
   <td>234563IJ</td>
   <td>Afolabi Oluseyi</td>
@@ -51,6 +58,14 @@ return <>
 </tr>)}
 </tbody>
 </table>
+<Pagination 
+onFilterRow={(d)=>{
+
+}}
+onPage={(d)=>{
+ 
+}}
+/>
 {showConfirmDailog && <ConfirmDialogComponent 
 onClose={()=>{
   setShowConfirmDailog(false)
@@ -60,6 +75,7 @@ confirm={()=>{
 }}
 />}
 {showEditUser && <EditUserComponent
+
 onClose={()=>{
   setShowEditUser(false)
 }}

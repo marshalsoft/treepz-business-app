@@ -4,7 +4,8 @@ export const CONSTANTS = {
       Otp:"otp",
       ForgotPassword:"forgot_password",
       Dashboard:"dashboard",
-      Personnel:"personnel_list",
+      TreepzHistory:"treepz-history",
+      EmployeeData:"employee-data",
     }
 }
 
@@ -16,5 +17,6 @@ link:string;
 
 export const DashboardNavItems:ListProps[] = [
   {title:"Dashboard",link:"/"+CONSTANTS.Routes.Dashboard},
-  {title:"Personnel list",link:"/"+CONSTANTS.Routes.Dashboard+"/"+CONSTANTS.Routes.Personnel}
+  {title:"Treepz History",link:"/"+CONSTANTS.Routes.Dashboard+"/"+CONSTANTS.Routes.TreepzHistory},
+  {title:"Employee Data",link:"/"+CONSTANTS.Routes.Dashboard+"/"+CONSTANTS.Routes.EmployeeData},
 ] 

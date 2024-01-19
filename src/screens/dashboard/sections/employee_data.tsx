@@ -6,19 +6,19 @@ import { AddPersonnelComponent } from '../components/addPersonnel';
 import { ImportPersonnelComponent } from '../components/importPersonnel';
 import EmployeesTable from './HistoryTables/employees';
 import InvitationTable from './HistoryTables/invitations';
-export default function PersonnelSection(){
+export default function EmplyeeDataSection(){
   const location = useLocation();
   const [tab,setTab] = useState<string>("employee")
   const [showAddPersonnel,setShowAddPersonnel] = useState<boolean>(false)
   const [showImportPersonnel,setShowImportPersonnel] = useState<boolean>(false)
 return <div className='main-scrollable p-5 pt-0' >
   <div className="heading mb-3">
-    <b className='fCap'>{String(location.pathname).replace("/dashboard/","").replace("/","").replace("_"," ")}</b></div>
+    <b className='fCap'>Treepz history</b></div>
     <SearchBar 
    onSearch={()=>{
 
    }}
-   page='personnel'
+   page='data'
    onAddPersonnel={()=>setShowAddPersonnel(true)}
     onExportPersonnel={()=>{ }}
     onImportPersonnel={()=>setShowImportPersonnel(true)}
@@ -26,11 +26,12 @@ return <div className='main-scrollable p-5 pt-0' >
 <nav className="nav pl-c">
   <span onClick={()=>{
     setTab("employee");
-    }} className={`nav-link active btn ${tab == "employee"?"nav-link-active":""}`} aria-current="page" >Employees</span>
-  <span onClick={()=>setTab("invited")}  className={`nav-link btn ${tab == "invited"?"nav-link-active":""}`} >Invited members</span>
+    }} 
+    className={`nav-link active btn p-2 mb-2 ${tab === "employee"?"fw-bold selected-tab":"fw-normal"}`} aria-current="page" >Employees</span>
+  <span onClick={()=>setTab("invited")}  className={`nav-link btn p-2 mb-2 ${tab === "invited"?"fw-bold selected-tab":"fw-normal"}`} >Invited members</span>
 </nav>
-{tab == "employee"?<EmployeesTable />:null}
-{tab == "invited"?<InvitationTable />:null}
+{tab === "employee"?<EmployeesTable />:null}
+{tab === "invited"?<InvitationTable />:null}
 {showAddPersonnel && <AddPersonnelComponent 
 onClose={()=>setShowAddPersonnel(false)}
 />}
