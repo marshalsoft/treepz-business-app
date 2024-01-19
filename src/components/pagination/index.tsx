@@ -12,8 +12,6 @@ interface PaginationProps {
 export const Pagination = (props:PaginationProps)=>{
     const [ currentPage,setCurrentPage] = useState<number>(1);
     const [ totalPages,setTotalPages] = useState<number>(11);
-    const [ prevPage,setPrevPage] = useState<number>(1);
-    const [ nextPage,setNextPage] = useState<number>(1);
     const [ selectedNumberOfRows,setSelectedNumberOfRows] = useState<number>(10);
     const [ showRowFilter,setShowRowFilter] = useState<boolean>(false);
     const popOver = useRef(null) as RefObject<HTMLDivElement>
@@ -21,6 +19,7 @@ export const Pagination = (props:PaginationProps)=>{
         popOver.current?.addEventListener("mouseleave",()=>{
             setShowRowFilter(false) 
         })  
+        setTotalPages(11);
     },[showRowFilter])
     return <div className="row" >
         <div className="col-8 d-flex align-items-center ">

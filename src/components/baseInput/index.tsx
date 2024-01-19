@@ -22,7 +22,6 @@ interface BaseInputProps {
 }
 export default function BaseInput(props:BaseInputProps) {
  const [toggleEye,setToggleEye] = useState(false);
- const [list,setList]= useState<string[]>([]);
 var stringList:string[] = [];
 if(typeof props.value == "string")
 {
@@ -31,6 +30,7 @@ if(typeof props.value == "string")
   {
     stringList.push(a)
   }
+  return a;
 })
 }
  return (<div className="mb-3">

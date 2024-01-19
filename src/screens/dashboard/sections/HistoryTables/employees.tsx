@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import EditIcon from "../../../../assets/icons/editIcon";
 import TrashIcon from "../../../../assets/icons/trashIcon";
 import { ConfirmDialogComponent } from "../../components/confirmDialog";
@@ -7,12 +7,14 @@ import { Pagination } from "../../../../components/pagination";
 const EmployeesTable = ()=>{
   const [showConfirmDailog,setShowConfirmDailog] = useState<boolean>(false);
   const [showEditUser,setShowEditUser] = useState<boolean>(false);
-  const [list,setList] = useState(Array.from({length:12}).map((a,i)=>{
+  const [list,setList] = useState<any[]>([])
+useEffect(()=>{
+  setList(Array.from({length:12}).map((a,i)=>{
     return {
-      id:i,
-      
+      id:i
     }
   }))
+},[])
 return <>
 <table className="table">
 <thead>

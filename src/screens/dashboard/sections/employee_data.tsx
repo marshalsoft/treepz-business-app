@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import './../style.css';
 import { SearchBar } from '../components/searchBar';
-import { useLocation } from 'react-router-dom';
 import { AddPersonnelComponent } from '../components/addPersonnel';
 import { ImportPersonnelComponent } from '../components/importPersonnel';
 import EmployeesTable from './HistoryTables/employees';
 import InvitationTable from './HistoryTables/invitations';
 export default function EmplyeeDataSection(){
-  const location = useLocation();
   const [tab,setTab] = useState<string>("employee")
   const [showAddPersonnel,setShowAddPersonnel] = useState<boolean>(false)
   const [showImportPersonnel,setShowImportPersonnel] = useState<boolean>(false)

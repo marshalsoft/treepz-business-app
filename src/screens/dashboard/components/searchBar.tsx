@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from "react"
 import { BaseButton, WhiteButton } from "../../../components/buttons"
-import { AddEmployeeIcon, ExportIcon, FilterIcon, Searchicon } from "../icon"
+import { ExportIcon, Searchicon } from "../icon"
 interface SearchBarProps {
     onSearch:ChangeEventHandler<HTMLInputElement>;
     onAddPersonnel:()=>void;

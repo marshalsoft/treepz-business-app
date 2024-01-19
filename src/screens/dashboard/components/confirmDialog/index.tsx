@@ -1,13 +1,11 @@
-import React, { ChangeEventHandler, useState } from "react"
+import React, {  } from "react"
 import { BaseButton } from "../../../../components/buttons";
-import { PostRequest } from '../../../../includes/functions';
 
 interface ConfirmDialogComponentProps {
 onClose:()=>void;
 confirm:()=>void;
 }
 export const ConfirmDialogComponent = (props:ConfirmDialogComponentProps)=>{
-  const [loading,setLoading] = useState<boolean>(false)
   return  <div className="modal" tabIndex={-1} >
     <div className="modal-dialog" >
       <div className="modal-content" style={{borderRadius:20,marginTop:100}}>

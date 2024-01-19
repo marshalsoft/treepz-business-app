@@ -1,25 +1,22 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './../style.css';
 import { SearchBar } from '../components/searchBar';
-import { useLocation } from 'react-router-dom';
 import { AddPersonnelComponent } from '../components/addPersonnel';
 import { ImportPersonnelComponent } from '../components/importPersonnel';
-import EditIcon from "../../../assets/icons/editIcon";
-import TrashIcon from "../../../assets/icons/trashIcon";
-import InvitationTable, { Menu } from './HistoryTables/invitations';
+import { Menu } from './HistoryTables/invitations';
 import { Pagination } from '../../../components/pagination';
 import ThreeVerticalDotsIcon from '../../../assets/icons/threeDots';
 export default function TreepzHistorySection(){
-  const [showConfirmDailog,setShowConfirmDailog] = useState<boolean>(false);
-  const [showEditUser,setShowEditUser] = useState<boolean>(false);
   const [showAddPersonnel,setShowAddPersonnel] = useState<boolean>(false)
   const [showImportPersonnel,setShowImportPersonnel] = useState<boolean>(false)
-  const [list,setList] = useState(Array.from({length:12}).map((a,i)=>{
-    return {
-      id:i,
-      
-    }
-  }))
+  const [list,setList] = useState<any[]>([]);
+  useEffect(()=>{
+    setList(Array.from({length:12}).map((a,i)=>{
+      return {
+        id:i,
+      }
+    }))
+  },[])
 return <div className='main-scrollable p-5 pt-0' >
   <div className="heading mb-3">
     <b className='fCap'>Treepz history</b></div>

@@ -1,17 +1,8 @@
-import React, { ChangeEventHandler, useState,useCallback } from "react"
+import React, { } from "react";
 import Dropzone from 'react-dropzone';
-import BaseInput from "../../../../components/baseInput";
-import { BaseButton } from "../../../../components/buttons";
-import { Formik} from 'formik';
-import * as y from 'yup';
-import { PostRequest } from '../../../../includes/functions';
-import { CSVFileIcon, TrashIcon } from "../../icon";
 import CloudIcon from "../../../../assets/icons/cloudIcon";
 import DotIcon from "../../../../assets/icons/dot";
-const schema = y.object({
-    firstname:y.string().required("First name is required."),
-    lastname:y.string().required("Last name is required.")
-    })
+
 interface ImportPersonnelComponentprops {
 onClose:()=>void;
 }
@@ -19,8 +10,6 @@ onClose:()=>void;
 
 export const ImportPersonnelComponent = (props:ImportPersonnelComponentprops)=>{
  
-  const [loading,setLoading] = useState<boolean>(false)
-    const [uploading,setUpLoading] = useState<boolean>(false)
   return  <div className="modal" tabIndex={-1} >
     <div className="modal-dialog">
       <div className="modal-content" style={{borderRadius:20,marginTop:100}}>

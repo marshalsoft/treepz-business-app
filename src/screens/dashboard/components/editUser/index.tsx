@@ -1,6 +1,5 @@
-import React, { ChangeEventHandler, useState } from "react"
+import React from "react";
 import { BaseButton } from "../../../../components/buttons";
-import { PostRequest } from '../../../../includes/functions';
 import BaseInput from "../../../../components/baseInput";
 import { Formik} from 'formik';
 import * as y from 'yup';
@@ -13,8 +12,8 @@ onClose:()=>void;
 onValue:()=>void;
 }
 export const EditUserComponent = (props:ConfirmDialogComponentProps)=>{
-  const [loading,setLoading] = useState<boolean>(false)
-  return  <div className="modal" tabIndex={-1} >
+
+return  <div className="modal" tabIndex={-1} >
     <div className="modal-dialog" >
       <div className="modal-content" style={{borderRadius:20,marginTop:100}}>
         <div className="modal-header">
