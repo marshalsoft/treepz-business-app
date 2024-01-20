@@ -3,7 +3,6 @@ import ThreeVerticalDotsIcon from "../../../../assets/icons/threeDots";
 import ResendIcon from "../../../../assets/icons/resendIcon";
 import TrashIcon from "../../../../assets/icons/trashIcon";
 import { Pagination } from "../../../../components/pagination";
-import { PersonIcon } from "../../icon";
 import UserIcon from "../../../../assets/icons/UserIcon";
 const InvitationTable = ()=>{
 return <>
