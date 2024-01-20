@@ -197,12 +197,13 @@ color: orange;
 .dropdown-cnt ul{
 list-style: none;
 padding:5px 10px;
+padding-bottom: 0px;
 background-color: white;
 }
 .dropdown-cnt ul li{
   display: flex;
   align-items: center;
-  width: 140px;
+  min-width: 140px;
   font-size: 14px;
   padding: 10px 0px;
   cursor: pointer;

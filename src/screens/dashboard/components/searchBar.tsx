@@ -1,6 +1,7 @@
 import { ChangeEventHandler } from "react"
 import { BaseButton, WhiteButton } from "../../../components/buttons"
 import { ExportIcon, Searchicon } from "../icon"
+import { Menu } from "../sections/HistoryTables/invitations";
 interface SearchBarProps {
     onSearch:ChangeEventHandler<HTMLInputElement>;
     onAddPersonnel:()=>void;
@@ -27,12 +28,30 @@ export const SearchBar = (props:SearchBarProps)=>{
 <ExportIcon />
 <span className="ps-2">Export CSV</span>
     </WhiteButton>
-    {props.page === "data"?<BaseButton
-    onClick={props.onAddPersonnel}
+    {props.page === "data"?<div >
+    <Menu 
+    type="new"
+    onValue={(d)=>{
+        if(d.action === "add")
+        {
+            props.onAddPersonnel()
+        }
+        if(d.action === "import")
+        {
+            props.onImportPersonnel()
+        }
+    }}
+    >
+    <BaseButton
+    onClick={()=>{
+
+    }}
     style={{paddingLeft:5,paddingRight:5,width:150}}
     >
     <span className="ps-2">Add new employee</span>
-    </BaseButton>:null}
+    </BaseButton>
+    </Menu>
+    </div>:null}
     </div>
     </div>
     </div>

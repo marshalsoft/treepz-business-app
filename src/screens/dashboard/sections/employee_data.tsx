@@ -10,7 +10,7 @@ export default function EmplyeeDataSection(){
   const [showAddPersonnel,setShowAddPersonnel] = useState<boolean>(false)
   const [showImportPersonnel,setShowImportPersonnel] = useState<boolean>(false)
 return <div className='main-scrollable p-5 pt-0' >
-  <div className="heading mb-3">
+  <div className="heading mb-3" >
     <b className='fCap'>Treepz history</b></div>
     <SearchBar 
    onSearch={()=>{

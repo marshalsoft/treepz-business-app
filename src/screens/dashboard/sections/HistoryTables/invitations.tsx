@@ -1,8 +1,10 @@
-import React, { useState } from "react"
+import React, { RefObject, useEffect, useRef, useState } from "react"
 import ThreeVerticalDotsIcon from "../../../../assets/icons/threeDots";
 import ResendIcon from "../../../../assets/icons/resendIcon";
 import TrashIcon from "../../../../assets/icons/trashIcon";
 import { Pagination } from "../../../../components/pagination";
+import { PersonIcon } from "../../icon";
+import UserIcon from "../../../../assets/icons/UserIcon";
 const InvitationTable = ()=>{
 return <>
 <table className="table">
@@ -48,11 +50,17 @@ export default InvitationTable;
 export interface MenuProps{
 children:JSX.Element;
 onValue:(d:{value:string;action:string;})=>void;
-type:"history"|"data"
+type:"history"|"data"|"new"
 }
 export const Menu = (props:MenuProps)=>{
     const [show,setShow] = useState<boolean>(false);
-    return  <div className="dropdown-wrp" >
+    const thisDropDown = useRef() as RefObject<HTMLDivElement>;
+   useEffect(()=>{
+    thisDropDown.current?.addEventListener("mouseleave",()=>{
+        setShow(false);
+    })
+   },[])
+   return  <div className="dropdown-wrp" >
      <button 
     className="btn"
     onClick={()=>{
@@ -61,7 +69,9 @@ export const Menu = (props:MenuProps)=>{
     >
      {props.children}  
     </button>
-        <div className="card dropdown-cnt" >
+     <div className="card dropdown-cnt" 
+     ref={thisDropDown}
+     >
     {show && <ul >
         {props.type === "data"?<>
         <li onClick={()=>{
@@ -72,13 +82,25 @@ export const Menu = (props:MenuProps)=>{
             props.onValue({value:"cancel invitation",action:"cancel"});
             setShow(false); 
         }}><TrashIcon /><span>Cancel invite</span></li>
-        </>:<>
+        </>:null}
+        {props.type === "history"?<>
         <li onClick={()=>{
             props.onValue({value:"view",action:"view"});
             setShow(false);
         }}><ResendIcon /> <span >View</span></li>
-        
-        </>}
+        </>:null}
+        {props.type === "new"?<>
+        <li onClick={()=>{
+            props.onValue({value:"import",action:"import"});
+            setShow(false);
+        }}><ResendIcon /> <span >Import employee</span></li>
+        <li onClick={()=>{
+            props.onValue({value:"add",action:"add"});
+            setShow(false);
+        }}>
+            <UserIcon /> 
+        <span >Add single employee</span></li>
+        </>:null}
     </ul>}
     </div>
 </div>

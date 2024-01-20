@@ -1,6 +1,6 @@
 {
-  "homepage": "https://marshalsoft.github.io/treepz-business-app",
   "name": "treepz-business-app",
+  "description": "Business treepz app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
