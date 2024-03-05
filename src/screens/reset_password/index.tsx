@@ -3,18 +3,20 @@ import { Logo } from '../../components/Logo'
 import { LogoDesign } from '../../components/LogoDesign'
 import { PoweredByComponent } from '../../components/PoweredBy'
 import BaseInput from '../../components/baseInput'
-import { NavLink} from 'react-router-dom'
+import { NavLink, useNavigation} from 'react-router-dom'
 import { CONSTANTS } from '../../includes/constant'
 import { BaseButton, LightYellowButton } from '../../components/buttons'
 import { Formik } from 'formik';
 import * as y from 'yup';
 import { GoBackIcon } from '../../assets/icons/BackIcon'
 import { PostRequest } from '../../includes/functions'
+
 const schema = y.object({
     email:y.string().required().email("A valid email is required.")
     })
 export default function ResetPasswordScreen() {
   const [loading,setLoading] = useState(false);
+  // const navigate = useNavigation();
   useEffect(()=>{
     if(localStorage.getItem(CONSTANTS.Routes.ForgotPassword))
     {
@@ -37,9 +39,9 @@ export default function ResetPasswordScreen() {
      <Formik
 onSubmit={(values)=>{
  setLoading(true);
- PostRequest("forgot_password",values).then((res)=>{
+ PostRequest("admin/forgot-password",values,true).then((res)=>{
   setLoading(false);
-  if(!res.status)
+  if(res.success)
   {
     localStorage.setItem(CONSTANTS.Routes.ForgotPassword,values.email);
     window.location.href = "/"+CONSTANTS.Routes.Otp;
@@ -48,8 +50,7 @@ onSubmit={(values)=>{
 }}
 validationSchema={schema}
 initialValues={{
-  email:"",
-  password:""
+  email:""
 }}
 >
 {({handleSubmit,handleChange,values})=><div className='ps-5' >
@@ -71,16 +72,19 @@ initialValues={{
         <BaseInput 
         name='email'
         type='email'
+        max={100}
         placeholder='Work email address'
         onValueChange={handleChange("email")}  
          value={values.email}
         required={true}
         />
+        <div className='row p-2 pe-3' >
         <BaseButton 
         onClick={handleSubmit}
         loading={loading}
         style={{marginTop:30}}
         >Reset password</BaseButton>
+        </div>
         <div className='row text-center mb-5 mt-5'>
         <NavLink to={"../"+CONSTANTS.Routes.Login} className={"return-to-login-text"}>
             <span >Return to login</span>
@@ -95,7 +99,6 @@ initialValues={{
         <span className='poweredby'>
             <PoweredByComponent />
         </span>
-     
      </div>
     </div>
   )

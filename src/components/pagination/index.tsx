@@ -12,7 +12,7 @@ interface PaginationProps {
 export const Pagination = (props:PaginationProps)=>{
     const [ currentPage,setCurrentPage] = useState<number>(1);
     const [ totalPages,setTotalPages] = useState<number>(11);
-    const [ selectedNumberOfRows,setSelectedNumberOfRows] = useState<number>(10);
+    const [ selectedNumberOfRows,setSelectedNumberOfRows] = useState<number>(50);
     const [ showRowFilter,setShowRowFilter] = useState<boolean>(false);
     const popOver = useRef(null) as RefObject<HTMLDivElement>
     useEffect(()=>{
@@ -43,7 +43,7 @@ export const Pagination = (props:PaginationProps)=>{
         ref={popOver}
         >
         {showRowFilter && <ul  className="bx-rw-dropdown">
-        {[10,30,50,100].map((a,i)=><li 
+        {[50,100,150,200].map((a,i)=><li 
             key={i}
             onClick={()=>{
                 if(props.onFilterRow)

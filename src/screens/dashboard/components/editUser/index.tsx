@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BaseButton } from "../../../../components/buttons";
 import BaseInput from "../../../../components/baseInput";
 import { Formik} from 'formik';
 import * as y from 'yup';
+import { EmployeeProps } from "../../../../includes/types";
 const schema = y.object({
-    email:y.string().required().email("A valid email is required."),
-    password:y.string().required()
+    email:y.string().required().email("A valid email is required.").max(150,"Location is too long."),
+    employeeId:y.string().required("Employee Id is required."),
+    fullname:y.string().required("Full name is required.").max(25,"Full name is too long."),
+    location:y.string().required("Location is required.").max(30,"Location is too long.")
     })
 interface ConfirmDialogComponentProps {
 onClose:()=>void;
-onValue:()=>void;
+onValue:(v:any)=>void;
+employeeData:EmployeeProps | null;
+loading?:boolean;
 }
 export const EditUserComponent = (props:ConfirmDialogComponentProps)=>{
+useEffect(()=>{
+})
 
 return  <div className="modal" tabIndex={-1} >
     <div className="modal-dialog" >
@@ -23,25 +30,27 @@ return  <div className="modal" tabIndex={-1} >
 <div className="modal-body p-3">
   <Formik
 onSubmit={(values)=>{
-// UserLogin(values)
+props.onValue(values)
 }}
 validationSchema={schema}
 initialValues={{
-    employeeId:"",
-    fullname:"",
-    email:"",
+    employeeId:props.employeeData?.employeeId,
+    fullname:props.employeeData?.name,
+    email:props.employeeData?.email,
     location:""
 }}
 >
-{({handleSubmit,handleChange,values})=><div className="" >
+{({handleSubmit,handleChange,errors,touched,values})=><div className="" >
   <BaseInput 
   label="Employee's ID"
+  disabled={true}
         name='employeeId'
         type='text'
         placeholder='2345464IG'
         onValueChange={handleChange("employeeId")}  
          value={values.employeeId}
         required={true}
+        error={touched.employeeId && errors.email}
         />
         <BaseInput 
         label="Full name"
@@ -51,6 +60,7 @@ initialValues={{
         onValueChange={handleChange("fullname")}  
          value={values.fullname}
         required={true}
+        error={touched.fullname && errors.fullname}
         />
         <BaseInput 
         label="Employee's work email"
@@ -58,8 +68,9 @@ initialValues={{
         type='email'
         placeholder="Employee's work email"
         onValueChange={handleChange("email")}  
-         value={values.email}
+        value={values.email}
         required={true}
+        error={touched.email && errors.email}
         />
         <BaseInput 
         label='Location'
@@ -69,15 +80,18 @@ initialValues={{
         onValueChange={handleChange("location")}  
          value={values.location}
         required={true}
+        error={touched.location && errors.location}
         />
+        <div className="p-3 row" style={{paddingRight:30}}>
+ <BaseButton
+ loading={props.loading}
+ onClick={handleSubmit}
+>Update user information</BaseButton>
+</div>
         </div>}
         </Formik>
 </div> 
-<div className="p-5">
- <BaseButton
- onClick={props.onValue}
->Update user information</BaseButton>
-</div>
+
 </div>
 </div>
 </div>

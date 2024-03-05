@@ -15,6 +15,7 @@ otp:y.string().required().max(4,"OTP must be 4 characters.").min(4,"OTP must be 
 })
 export default function OTPScreen() {
  const [loading,setLoading] = useState(false);
+ const [resetloading,setResetLoading] = useState(false);
  const [timer, setTime] = useState<number>(0);
  const max:number = 30;
  const TimeCounter = useRef(null) as any;
@@ -35,7 +36,17 @@ export default function OTPScreen() {
  }
 
  const ResendOTP = ()=>{
-
+  setResetLoading(true);
+  CountDown();
+  PostRequest("admin/forgot-password",{
+    email:localStorage.getItem(CONSTANTS.Routes.ForgotPassword)
+  },true).then((res)=>{
+    setResetLoading(false);
+    if(res.success)
+    {
+      window.location.href = "/"+CONSTANTS.Routes.CreatePassword
+    }
+   })
  }
 
   return (<div className='row'>
@@ -55,13 +66,14 @@ export default function OTPScreen() {
 onSubmit={(values)=>{
  setLoading(true);
  CountDown();
- PostRequest("otp",values,true).then((res)=>{
+ PostRequest("admin/verify-otp",values,true).then((res)=>{
   setLoading(false);
  })
 }}
 validationSchema={schema}
 initialValues={{
-  otp:""
+  otp:"",
+  email:localStorage.getItem(CONSTANTS.Routes.ForgotPassword)
 }}
 >
 {({handleSubmit,handleChange,setFieldValue,values})=><div className='ps-5' >

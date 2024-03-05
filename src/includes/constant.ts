@@ -1,4 +1,5 @@
 export const CONSTANTS = {
+    BaseURL:"http://3.255.45.79:3000/",
     Routes:{
       Login:"login",
       Otp:"otp",
@@ -6,6 +7,8 @@ export const CONSTANTS = {
       Dashboard:"dashboard",
       TreepzHistory:"treepz-history",
       EmployeeData:"employee-data",
+      CreatePassword:"create_password",
+      Settings:"settings"
     }
 }
 

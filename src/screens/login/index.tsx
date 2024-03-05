@@ -19,13 +19,14 @@ export default function LoginScreen() {
   const navigate = useNavigate()
   const UserLogin = (values:any)=>{
     setLoading(true);
-    PostRequest("login",values).then((response)=>{
+    PostRequest("admin/login",values).then((response)=>{
       setLoading(false);
-      localStorage.setItem("token","k");
-      navigate("/"+CONSTANTS.Routes.Dashboard)
+      if(response.success)
+      {
+       navigate("/"+CONSTANTS.Routes.Dashboard);
+      }
     })
   }
-
   return (<div className='row'>
      <div className='col-3 sidemenu position-relative' >
      <div className='p-5 ' >
@@ -45,8 +46,8 @@ UserLogin(values)
 }}
 validationSchema={schema}
 initialValues={{
-  email:"",
-  password:""
+  email:"marshall@treepz.com",
+  password:"Mekene83"
 }}
 >
 {({handleSubmit,handleChange,values})=><div className='' >
@@ -59,6 +60,7 @@ initialValues={{
         name='email'
         type='email'
         placeholder='Work email address'
+        max={100}
         onValueChange={handleChange("email")}  
          value={values.email}
         required={true}
@@ -67,6 +69,7 @@ initialValues={{
         name='password'
         type='password'
         placeholder='Password'
+        max={50}
         onValueChange={handleChange("password")} 
          value={values.password}
         required={true}
@@ -78,10 +81,12 @@ initialValues={{
         </NavLink>
         </div>
         </div>
+        <div className='row p-2 pe-3' >
         <BaseButton 
         onClick={handleSubmit}
         loading={loading}
         >Login</BaseButton>
+        </div>
         </div>
         <div className='col-2' ></div>
         </div>

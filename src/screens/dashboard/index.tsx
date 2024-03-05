@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Logo } from '../../components/Logo'
 import { LogoDesign } from '../../components/LogoDesign'
 import { NavLink, Navigate, Outlet, useLocation } from 'react-router-dom'
@@ -6,10 +6,24 @@ import { CONSTANTS, DashboardNavItems } from '../../includes/constant'
 import {  DashboardIcon, EmployeeDataIcon, LogoutIcon, SettingsIcon, TreepzHistoryIcon } from './icon'
 import './style.css';
 import { BaseLoader } from '../../components/baseloader'
+import { GetRequest } from '../../includes/functions'
 
 export default function DashboardScreen() {
+  
   const [loading,setLoading] = useState(false);
+
   const location = useLocation();
+  const GetUserInfo = ()=>{
+   GetRequest("admin",{}).then((response)=>{
+     if(response.success)
+     {
+      localStorage.setItem("userdata",JSON.stringify(response.data))
+     }
+   })
+ }
+ useEffect(()=>{
+   GetUserInfo();
+ },[])
   if(!localStorage.getItem("token"))
   {
    return <Navigate to={"/"+CONSTANTS.Routes.Login} />
@@ -21,18 +35,7 @@ export default function DashboardScreen() {
         <Logo />
         <ul className='sub Dashboard-items'>
         {DashboardNavItems.map((a,i)=>{
-         const spl = String(location.pathname).replace("/dashboard/","")
-        var active = String(a?.link).includes(spl);
-         var icon =  <DashboardIcon color={active?"rgba(248, 176, 43, 1)":"rgba(138, 139, 142, 1)"} />; 
-         if(i === 1)
-         {
-            icon = <TreepzHistoryIcon color={active?"rgba(248, 176, 43, 1)":"rgba(138, 139, 142, 1)"} /> 
-         } 
-         if(i === 2)
-         {
-            icon = <EmployeeDataIcon color={active?"rgba(248, 176, 43, 1)":"rgba(138, 139, 142, 1)"} /> 
-         }
-        return <li key={i}><NavLink to={a.link} className={({isActive}) => isActive ? "active" : ''}  >{icon}<span></span>{a.title}</NavLink></li>
+         return <NavBtn title={a.title} id={i} link={a.link} key={i} />
         })}
         </ul>
         </div>
@@ -48,7 +51,9 @@ export default function DashboardScreen() {
         </div>
         <div className='col-2 d-flex align-Item-end justify-content-end' >
         <span className='btn'>
+         <NavLink to={"/dashboard/"+CONSTANTS.Routes.Settings} >
             <SettingsIcon color='gray' />
+            </NavLink>
         </span>
         <span className='btn'
         onClick={()=>{
@@ -71,4 +76,31 @@ export default function DashboardScreen() {
      </div>
     </div>
   )
+}
+interface  NavBtnProps {
+id?:number
+link:string;
+title:string;
+}
+const NavBtn = (props:NavBtnProps)=>{
+ const [ActiveTab,setActiveTab] = useState(false);
+ var icon =  <DashboardIcon color={ActiveTab?"rgba(248, 176, 43, 1)":"rgba(138, 139, 142, 1)"} />; 
+ if(props.id === 0)
+ {
+    icon = <DashboardIcon color={ActiveTab?"rgba(248, 176, 43, 1)":"rgba(138, 139, 142, 1)"} />; 
+ }
+ if(props.id === 1)
+   {
+      icon = <TreepzHistoryIcon color={ActiveTab?"rgba(248, 176, 43, 1)":"rgba(138, 139, 142, 1)"} /> 
+   } 
+   if(props.id === 2)
+   {
+      icon = <EmployeeDataIcon color={ActiveTab?"rgba(248, 176, 43, 1)":"rgba(138, 139, 142, 1)"} /> 
+   }
+  return <li >
+   <NavLink to={props.link} 
+  className={({isActive}) =>{
+   setActiveTab(isActive);
+   return isActive ? "active" : ''}} 
+   ><span>{icon}</span><span >{props.title}</span></NavLink></li>
 }

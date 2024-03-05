@@ -2,11 +2,13 @@ import React, {  } from "react"
 import { BaseButton } from "../../../../components/buttons";
 
 interface ConfirmDialogComponentProps {
+loading?:boolean;
 onClose:()=>void;
 confirm:()=>void;
 }
 export const ConfirmDialogComponent = (props:ConfirmDialogComponentProps)=>{
-  return  <div className="modal" tabIndex={-1} >
+ 
+ return  <div className="modal" tabIndex={-1} >
     <div className="modal-dialog" >
       <div className="modal-content" style={{borderRadius:20,marginTop:100}}>
         <div className="modal-header">
@@ -19,6 +21,7 @@ export const ConfirmDialogComponent = (props:ConfirmDialogComponentProps)=>{
 <div className="modal-footer">
         <button type="button" onClick={props.onClose} className="btn btn-inactive" >Cancel</button>
         <BaseButton
+        loading={props.loading}
         style={{minWidth:130}}
         onClick={props.confirm}
         >Confirm</BaseButton>

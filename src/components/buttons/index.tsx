@@ -5,7 +5,8 @@ interface BaseButtonProps {
 children:JSX.Element | any;
 loading?:boolean;
 onClick:()=>void;
-style?:CSSProperties | undefined
+style?:CSSProperties | undefined;
+right?:boolean;
 }
 interface LightYellowButtonProps {
     children:JSX.Element | any;
@@ -24,9 +25,10 @@ export const BaseButton = (props:BaseButtonProps)=>{
 }
 export const WhiteButton = (props:BaseButtonProps)=>{
     return <button 
+    disabled={props.loading}
     onClick={props.onClick}
-    className="base-button-white"
-    style={props.style}
+    className={"base-button-white"}
+    style={{...props.style}}
     >
  {props.loading?<div className="spinner-border spinner-border-sm" role="status">
 </div>:props.children}

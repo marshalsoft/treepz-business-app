@@ -7,6 +7,11 @@ gap: 4px;
 display: flex;
 align-items: center;
 position: relative;
+
+}
+.bx a {
+    color: black;
+    text-decoration: none;
 }
 .bx .caret{
  position: absolute;
@@ -79,15 +84,31 @@ padding-left: 10px;
 }
 .searchbar-container{
 position: relative;
+display: flex;
+align-items: center;
+}
+.close-btn{
+    position: relative;
+    right: 20px;
+    cursor: pointer;
 }
 .searchbar-icon{
     position: absolute;
-    top:8px;
     left:20px;
 }
 .searchbar-container > input{
 padding-left: 30px;
 }
-.filter-container{
-
+.avatar{
+background-color: #FDF2D0;
+width: 80px;
+height:80px;
+border-radius: 100%;
+text-align: center;
+}
+.nameText{
+font-family: "Switzer";
+font-size: 20px;
+font-weight: 500;
+text-align: center;
 }

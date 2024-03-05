@@ -11,6 +11,8 @@ import TreepzHistorySection from './screens/dashboard/sections/treepz_history';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EmplyeeDataSection from './screens/dashboard/sections/employee_data';
+import SettingsScreen from './screens/dashboard/sections/settings';
+import CreatePasswordScreen from './screens/create_password';
 
 function App() {
   return (<BrowserRouter>
@@ -18,11 +20,14 @@ function App() {
     <Route path={CONSTANTS.Routes.Dashboard} element={<DashboardScreen />} >
     <Route path={CONSTANTS.Routes.TreepzHistory} element={<TreepzHistorySection />} />
     <Route path={CONSTANTS.Routes.EmployeeData} element={<EmplyeeDataSection />} />
+    <Route path={CONSTANTS.Routes.Settings} element={<SettingsScreen />} />
+    
     <Route path={""} element={<DashboardSection />} />
     <Route path={"*"} element={<DashboardSection />} />
     </Route>
     <Route path={CONSTANTS.Routes.Login} element={<LoginScreen />} />
     <Route path={CONSTANTS.Routes.ForgotPassword} element={<ResetPasswordScreen />} />
+    <Route path={CONSTANTS.Routes.CreatePassword} element={<CreatePasswordScreen />} />
     {localStorage.getItem(CONSTANTS.Routes.ForgotPassword) && <>
     <Route path={CONSTANTS.Routes.Otp} element={<OTPScreen />} />
     </>}

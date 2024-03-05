@@ -288,3 +288,37 @@ background-color: white;
     border-bottom:solid 2px #F8B02B;
     border-radius: 0px;
   }
+  .orange-text{
+    color: #F8B02B;
+  }
+  .calendar-card{
+    z-index: 9999999 !important;
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+    position: absolute;
+    right:-10px;
+    top: 45px;
+    z-index: 9999;
+    box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.41);
+    -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.41);
+    -moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.41);
+  }
+  .react-calendar{
+border: none !important;
+  }
+  .cursor-pointer{
+    cursor: pointer;
+  }
+  .filterButton{
+    max-width: none !important;
+  }
+  .mx-1{
+    display: inline-block !important;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 10px;
+  }

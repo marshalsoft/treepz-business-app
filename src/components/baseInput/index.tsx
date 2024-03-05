@@ -2,6 +2,7 @@ import React, { ChangeEventHandler, useState } from 'react'
 import './style.css';
 import { EyeClose, EyeOpen } from '../../assets/icons/eye';
 import { ValidateEmail } from '../../includes/functions';
+import { BlockIcon, CloseIcon } from '../../assets/icons/CloseIcon';
 interface BaseInputProps {
     arrayList?:boolean;
     filterValue?:(d:any)=>void;
@@ -34,7 +35,7 @@ if(typeof props.value == "string")
 })
 }
  return (<div className="mb-3">
-  {props?.label && <label htmlFor={props.name} className="form-label" style={{position:"relative"}}>{props?.label}{props.required?<span className='error' style={{position:"absolute",right:-10,top:-8,fontSize:20}}>*</span>:""}</label>}
+  {props?.label && <label htmlFor={props.name} className="form-label" style={{position:"relative"}}><small ><b>{props?.label}</b></small>{props.required?<span className='error' style={{position:"absolute",right:-10,top:-8,fontSize:20}}>*</span>:""}</label>}
  <div className={`${props.arrayList?"form-control":"input-wrapper"}`}>
   {props.arrayList && <div className='emailContainer'>
     {stringList.map((a:string,i:number,self:string[])=>{
@@ -54,11 +55,16 @@ if(typeof props.value == "string")
    required={props.required}
    id={props.id} 
    name={props.name} 
+   maxLength={props.max}
+   minLength={props.min}
    value={props.value}
+   disabled={props.disabled}
   placeholder={props.placeholder}
   onChange={props.onValueChange}
    />
-   {props.type === "password" && <span
+   {props.disabled?<span className='input-icon'>
+    <BlockIcon size={20}/>
+   </span>:props.type === "password" && <span
    onClick={()=>setToggleEye(!toggleEye)} className='input-icon'>
     {!toggleEye?<EyeOpen />:<EyeClose />}
    </span>}

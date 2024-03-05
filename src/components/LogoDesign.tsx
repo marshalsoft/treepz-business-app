@@ -20,12 +20,12 @@ export const LogoDesign = ()=>{
     </g>
     <defs>
     <linearGradient id="paint0_linear_3860_34597" x1="126.776" y1="36.6047" x2="-119.53" y2="36.6047" gradientUnits="userSpaceOnUse">
-    <stop stop-color="white"/>
+    <stop stopColor="white"/>
     <stop offset="1"/>
     </linearGradient>
     <linearGradient id="paint1_linear_3860_34597" x1="126.764" y1="36.6046" x2="-119.543" y2="36.6046" gradientUnits="userSpaceOnUse">
-    <stop stop-color="#231F20"/>
-    <stop offset="1" stop-color="white"/>
+    <stop stopColor="#231F20"/>
+    <stop offset="1" stopColor="white"/>
     </linearGradient>
     </defs>
     </svg>
