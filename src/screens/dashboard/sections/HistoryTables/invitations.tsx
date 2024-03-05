@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { RefObject, useEffect, useRef, useState } from "react"
 import ThreeVerticalDotsIcon from "../../../../assets/icons/threeDots";
 import ResendIcon from "../../../../assets/icons/resendIcon";
@@ -13,7 +14,6 @@ interface InvitationTableProps {
 }
 const InvitationTable = (props:InvitationTableProps)=>{
     const [loadingItem,setLoadingItem] = useState<string>("");
-    const [currentPage,setCurrentPage] = useState<number>(1);
     const [pageSize,setPageSize] = useState<number>(50);
     const [listOfEmployees,setListOfemployees] = useState<EmployeeProps[]>([])
     const [startDate,setStartDate] = useState<string>(moment().subtract(3,"M").toISOString());
@@ -52,7 +52,7 @@ const InvitationTable = (props:InvitationTableProps)=>{
       GetInvitatedEmployees(pageSize);
     })
   }
-        useEffect(()=>{
+ useEffect(()=>{
           GetInvitatedEmployees(pageSize);
           window.addEventListener("reloadinvitedTable", (event:any) => {
             if(event.detail)
@@ -64,7 +64,7 @@ const InvitationTable = (props:InvitationTableProps)=>{
               },1000)
             }
           });
-        },[])
+  },[])
 const Alldata = listOfEmployees.filter((a,i)=>String(a.name).toLowerCase().includes(String(props.searchText).toLowerCase()) || String(a.employeeId).toLowerCase().includes(String(props.searchText).toLowerCase())  || String(a.email).toLowerCase().includes(String(props.searchText).toLowerCase()))
 return <>
 <table className="table">

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEventHandler, RefObject, useEffect, useRef, useState } from "react"
 import { BaseButton, WhiteButton } from "../../../components/buttons"
 import { ExportIcon, FilterIcon, Searchicon } from "../icon"

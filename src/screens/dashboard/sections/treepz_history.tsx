@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { RefObject, useEffect, useRef, useState } from 'react'
 import './../style.css';
 import { SearchBar } from '../components/searchBar';
@@ -7,9 +8,8 @@ import { Menu } from './HistoryTables/invitations';
 import { Pagination } from '../../../components/pagination';
 import ThreeVerticalDotsIcon from '../../../assets/icons/threeDots';
 import { GetRequest, PostRequest } from '../../../includes/functions';
-import { EmployeeProps, UserProps } from '../../../includes/types';
+import { EmployeeProps } from '../../../includes/types';
 import moment from 'moment';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import {DownloadIcon } from '../../../assets/icons/DownloadBtn';
 import { BaseLoader } from '../../../components/baseloader';
 export default function TreepzHistorySection(){

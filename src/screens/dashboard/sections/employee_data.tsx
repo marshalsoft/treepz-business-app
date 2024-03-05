@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './../style.css';
 import { SearchBar } from '../components/searchBar';
 import { AddPersonnelComponent } from '../components/addPersonnel';
 import { ImportPersonnelComponent } from '../components/importPersonnel';
 import EmployeesTable from './HistoryTables/employees';
 import InvitationTable from './HistoryTables/invitations';
-import { GetRequest } from '../../../includes/functions';
 export default function EmplyeeDataSection(){
   const [tab,setTab] = useState<string>("employee")
   const [showAddPersonnel,setShowAddPersonnel] = useState<boolean>(false)
-  const [processing,setProcessing] = useState<boolean>(false)
   const [showImportPersonnel,setShowImportPersonnel] = useState<boolean>(false);
-  const [startDate,setStartDate] = useState<string>("");
-  const [endDate,setEndDate] = useState<string>("");
   const [searchText,setSearchText] = useState<string>("");
   
 return <div className='main-scrollable p-5 pt-0' >
@@ -26,12 +22,9 @@ return <div className='main-scrollable p-5 pt-0' >
    onAddPersonnel={()=>setShowAddPersonnel(true)}
     onExportPersonnel={()=>{ 
     }}
-    processing={processing}
     onImportPersonnel={()=>setShowImportPersonnel(true)}
     showFilter={true}
     onFilterValue={({startDate,endDate})=>{
-      setStartDate(startDate);
-      setEndDate(endDate);
       const sendData = {startDate,endDate}
       const reloadEvent = new CustomEvent(tab === "employee"?"reloadEmployeeTable":"reloadinvitedTable", {detail:sendData});
       window.dispatchEvent(reloadEvent);
