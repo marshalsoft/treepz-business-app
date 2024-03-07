@@ -15,6 +15,7 @@ interface InvitationTableProps {
 const InvitationTable = (props:InvitationTableProps)=>{
     const [loadingItem,setLoadingItem] = useState<string>("");
     const [pageSize,setPageSize] = useState<number>(50);
+    const [currentPage,setCurrentPage] = useState<number>(1);
     const [listOfEmployees,setListOfemployees] = useState<EmployeeProps[]>([])
     const [startDate,setStartDate] = useState<string>(moment().subtract(3,"M").toISOString());
     const [endDate,setEndDate] = useState<string>(moment().toISOString());
@@ -49,18 +50,18 @@ const InvitationTable = (props:InvitationTableProps)=>{
       email:v.email
     },true).then((res)=>{
       setLoadingItem("");
-      GetInvitatedEmployees(pageSize);
+      GetInvitatedEmployees(1);
     })
   }
  useEffect(()=>{
-          GetInvitatedEmployees(pageSize);
+          GetInvitatedEmployees(1);
           window.addEventListener("reloadinvitedTable", (event:any) => {
             if(event.detail)
             {
               setEndDate(event.detail.endDate);
               setStartDate(event.detail.startDate);
               setTimeout(()=>{
-                GetInvitatedEmployees(pageSize);
+                GetInvitatedEmployees(currentPage);
               },1000)
             }
           });
@@ -116,6 +117,7 @@ setPageSize(d)
 }}
 onPage={(d)=>{
   GetInvitatedEmployees(d);
+  setCurrentPage(d);
 }}
 />
 </>
