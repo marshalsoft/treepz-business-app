@@ -82,7 +82,7 @@ export default function DashboardSection(){
     GetRequest("admin/attendence/report",{
       startDate : startDate === null?moment().subtract(1,"M").format("YYYY-MM-DDD"):startDate,
       endDate : startDate === null?moment().format("YYYY-MM-DDD"):startDate
-    },false,false).then((res)=>{
+    },false).then((res)=>{
       setSearching(false)
     if(res.success)
     {

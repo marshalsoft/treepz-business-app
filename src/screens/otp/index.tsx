@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Logo } from '../../components/Logo'
 import { LogoDesign } from '../../components/LogoDesign'
 import { PoweredByComponent } from '../../components/PoweredBy'
@@ -16,39 +16,36 @@ otp:y.string().required().max(4,"OTP must be 4 characters.").min(4,"OTP must be 
 export default function OTPScreen() {
  const [loading,setLoading] = useState(false);
  const [resetloading,setResetLoading] = useState(false);
- const [timer, setTime] = useState<number>(0);
  const max:number = 30;
+ const [timer, setTime] = useState<number>(max);
  const TimeCounter = useRef(null) as any;
  const CountDown = ()=>{
-  if(timer !== 0)
-  {
-    return ;
-  }
+ 
   TimeCounter.current = setInterval(()=>{
-    if(timer === max)
+    setTime((timer)=>{
+      if(timer === 0)
     {
-    setTime((timer)=>0);
-    clearInterval(TimeCounter.current);
-    return ;
+      clearInterval(TimeCounter.current);
+      return 0;
     }
-    setTime((timer)=>timer+1);
+     return timer-1;
+    });
   },1000)
  }
 
  const ResendOTP = ()=>{
   setResetLoading(true);
-  CountDown();
+  setTime(max);
   PostRequest("admin/forgot-password",{
     email:localStorage.getItem(CONSTANTS.Routes.ForgotPassword)
   },true).then((res)=>{
+    CountDown();
     setResetLoading(false);
-    if(res.success)
-    {
-      window.location.href = "/"+CONSTANTS.Routes.CreatePassword
-    }
    })
  }
-
+useEffect(()=>{
+  CountDown();
+},[])
   return (<div className='row'>
      <div className='col-3 sidemenu position-relative' >
      <div className='p-5 ' >
@@ -120,8 +117,11 @@ initialValues={{
         /> 
         </div>
         <div className='text-center mb-5 mt-5'>
-        <span className='timer-text1 btn'>I have not received it  <span className='timer-text2' onClick={()=>{
-          ResendOTP()
+        <span className='timer-text1'>I have not received it  <span className='timer-text2' onClick={()=>{
+         if(timer === 0)
+         {
+         ResendOTP();
+         }
         }}>Resend OTP {timer}</span></span>
         </div>
         <BaseButton 

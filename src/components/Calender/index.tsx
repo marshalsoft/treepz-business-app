@@ -16,6 +16,7 @@ export const CalendarComponent = (props:CalendarComponentProps)=>{
     const [startDate,setStartDate] = useState<string>("")
     const [endDate,setEndDate] = useState<string>("")
     const [focused,setFocused] = useState<boolean>(true);
+    const [show,setShow] = useState<boolean>(false);
     useEffect(()=>{
       // alert(props.startDate)
     },[])
@@ -31,15 +32,17 @@ export const CalendarComponent = (props:CalendarComponentProps)=>{
   style={{backgroundColor:focused?"#ffe0b2":"white"}}
   onClick={()=>{
     setFocused(true)
+    setShow(!show)
     // setStartDate(startDate === ""?moment().toISOString():moment(props.startDate).toISOString())
   }}
   >
 {startDate === ""?moment(props.startDate).format("DD"):moment(startDate).format("DD")}<CaretDownIcon />
 </div>
-<div className='card mx-1 btn'
-  style={{backgroundColor:focused?"#ffe0b2":"white"}}
+<div className='card mx-1 btn' 
+  style={{backgroundColor:focused?"#ffe0b2":"white",width:120}}
   onClick={()=>{
     setFocused(true)
+    setShow(!show)
     // setStartDate(startDate === ""?moment(props.startDate).format("YYYY"):moment(props.startDate).toISOString())
   }}
   >
@@ -49,6 +52,7 @@ export const CalendarComponent = (props:CalendarComponentProps)=>{
   style={{backgroundColor:focused?"#ffe0b2":"white"}}
   onClick={()=>{
     setFocused(true)
+    setShow(!show)
     // setStartDate(startDate === ""?moment(props.startDate).format("YYYY"):moment(props.startDate).toISOString())
   }}
   >
@@ -65,15 +69,17 @@ export const CalendarComponent = (props:CalendarComponentProps)=>{
 style={{backgroundColor:!focused?"#ffe0b2":"white"}}
 onClick={()=>{
     setFocused(false)
+    setShow(!show)
   //  setEndDate(endDate === ""?moment().toISOString():moment(endDate).toISOString())
   }}
 >
 {endDate === ""?moment().format("DD"):moment(endDate).format("DD")}<CaretDownIcon />
 </div>
 <div className='card mx-1 btn' 
-style={{backgroundColor:!focused?"#ffe0b2":"white"}}
+style={{backgroundColor:!focused?"#ffe0b2":"white",width:120}}
 onClick={()=>{
     setFocused(false)
+    setShow(!show)
   //  setEndDate(endDate === ""?moment().toISOString():moment(endDate).toISOString())
   }}
 >
@@ -83,6 +89,7 @@ onClick={()=>{
 style={{backgroundColor:!focused?"#ffe0b2":"white"}}
 onClick={()=>{
     setFocused(false)
+    setShow(!show)
   //  setEndDate(endDate === ""?moment().toISOString():moment(endDate).toISOString())
   }}
 >
@@ -92,7 +99,7 @@ onClick={()=>{
 </div>
 </div>
 <div  className='col-12'>
-  <div style={{height:280}}>
+{show && <div style={{height:280}}>
   <Calendar
     minDate={focused?new Date(String(props.startDate)):new Date(String(startDate))}
     maxDate={focused?new Date(moment().subtract(1,"day").toISOString()):new Date()}
@@ -103,10 +110,10 @@ onClick={()=>{
         }else{
             setEndDate(moment(String(d)).toISOString())
         }
-     
+     setShow(false);
     }} 
   />
-  </div>
+  </div>}
   <div className='mt-3 d-flex justify-content-end align-items-center'>
     <WhiteButton 
     style={{minWidth:35,borderWidth:0}}

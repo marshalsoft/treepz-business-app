@@ -1,0 +1,72 @@
+@media only screen and (min-device-width: 360px){
+.sidemenu,.m-hide{
+    display: none;
+}
+.m-show,.float-sidebar{
+    display: block;
+}
+.float-sidebar{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.163);
+}
+.float-sidebar .inner{
+    height: 100%;
+    width: 40%;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+
+.mmain{
+    width: 100vw;
+}
+.row > *{
+    padding-right: calc(var(--bs-gutter-x)* .2);
+    padding-left: calc(var(--bs-gutter-x)* .3);
+}
+.Dashboard-items li a{
+    display: block;
+    font-size: 12px;
+}
+.Dashboard-items li{
+    text-align: left;
+}
+.Dashboard-items{
+    margin: 0px;
+    padding: 0px;
+    }
+}
+
+@media only screen and (min-device-width: 800px){
+    .lg-hide,.float-sidebar{
+        display: none;
+    }
+    .sidemenu,.m-hide{
+        display: block;
+    }
+    .mmain{
+        width: 75%;
+    }
+    .row > *{
+        padding-right: calc(var(--bs-gutter-x)* .5);
+        padding-left: calc(var(--bs-gutter-x)* .5);
+    }
+    .Dashboard-items li a{
+        display: flex;
+        font-size: 14px;
+    }
+    .Dashboard-items li{
+        text-align: left;
+    }
+    .Dashboard-items{
+    margin: auto;
+    padding: auto;
+    }
+}

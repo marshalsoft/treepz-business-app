@@ -90,7 +90,7 @@ export const PostRequest = (uri:string,data:any,success?:boolean,fileType:"json"
   })
 })
 }
-export const GetRequest = (uri:string,data:any,success?:boolean,json?:boolean)=>{
+export const GetRequest = (uri:string,data:any,success?:boolean)=>{
     return new Promise<APIResponse>((resolve)=>{
     var params:string[] = [];
     Object.keys(data).forEach((ob,i)=>{
@@ -98,18 +98,14 @@ export const GetRequest = (uri:string,data:any,success?:boolean,json?:boolean)=>
    })
    const token = localStorage.getItem("token");
     const RequestHeaders = {
-      "Content-Type":"application/json",
-     "Accept": "application/json",
      "Access-Control-Allow-Origin":"*",
-    "Authorization":`Bearer ${token}`
+     "Authorization":`Bearer ${token}`
     }
     var options:AxiosRequestConfig = {
-        headers:RequestHeaders,
-        method:"get",
-        url:`${CONSTANTS.BaseURL}${uri}${json?"":"?"+params.join("&")}`
+        headers:RequestHeaders
     }
-axios(options).then((res:AxiosResponse)=>{
-  
+  console.log(options)
+axios.get(`${CONSTANTS.BaseURL}${uri}${"?"+params.join("&")}`,options).then((res:AxiosResponse)=>{
     if(res.data.success)
     {
     if(success)

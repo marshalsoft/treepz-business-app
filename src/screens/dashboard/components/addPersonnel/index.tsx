@@ -54,7 +54,7 @@ initialValues={{
         max={20}
         placeholder="Enter username"
         onValueChange={handleChange("username")}  
-         value={String(values.username).replace(/[ ]/g,'').trim()}
+        value={String(values.username).replace(/[ ]/g,'').trim()}
         required={true}
         error={touched.username && errors.username}
         />

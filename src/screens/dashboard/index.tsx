@@ -7,6 +7,7 @@ import {  DashboardIcon, EmployeeDataIcon, LogoutIcon, SettingsIcon, TreepzHisto
 import './style.css';
 import { BaseLoader } from '../../components/baseloader'
 import { GetRequest } from '../../includes/functions'
+import { SideBar } from './components/mobile/sidebar'
 
 export default function DashboardScreen() {
   
@@ -30,7 +31,7 @@ export default function DashboardScreen() {
   }
 
   return (<div className='row'>
-     <div className='col-3 sidemenu position-relative' >
+     <div className='col-3 sidemenu position-relative .d-none' >
      <div className='p-5 ' >
         <Logo />
         <ul className='sub Dashboard-items'>
@@ -43,11 +44,14 @@ export default function DashboardScreen() {
         <LogoDesign />
         </div>
      </div>
-     <div className='col-9' >
+     <div className='col-9 mmain' >
      <div className='' >
      <div className='row p-3' >
         <div className='col-10' >
-        <div className="heading mb-5"><b className='fCap'>{String(location.pathname).replace("/dashboard/","").replace("/personnel","Treepz history").replace("-"," ")}</b></div>
+        <div className='lg-hide' >
+        <Logo />
+        </div>
+        <div className="heading mb-5 m-hide lg-show"><b className='fCap'>{String(location.pathname).replace("/dashboard/","").replace("/personnel","Treepz history").replace(/[- /]/g," ")}</b></div>
         </div>
         <div className='col-2 d-flex align-Item-end justify-content-end' >
         <span className='btn'>
@@ -74,6 +78,7 @@ export default function DashboardScreen() {
      <Outlet />
      </div>
      </div>
+    {/* <SideBar /> */}
     </div>
   )
 }
@@ -83,7 +88,10 @@ link:string;
 title:string;
 }
 const NavBtn = (props:NavBtnProps)=>{
- const [ActiveTab,setActiveTab] = useState(false);
+ 
+ const path = window.location.pathname
+ const link = props.link;
+ const ActiveTab = path === link;
  var icon =  <DashboardIcon color={ActiveTab?"rgba(248, 176, 43, 1)":"rgba(138, 139, 142, 1)"} />; 
  if(props.id === 0)
  {
@@ -99,8 +107,6 @@ const NavBtn = (props:NavBtnProps)=>{
    }
   return <li >
    <NavLink to={props.link} 
-  className={({isActive}) =>{
-   setActiveTab(isActive);
-   return isActive ? "active" : ''}} 
+  className={ActiveTab?"active" : 'inactive'} 
    ><span>{icon}</span><span >{props.title}</span></NavLink></li>
 }

@@ -1,5 +1,9 @@
+@font-face {
+  font-family: "Switzer";
+  src: url(./css/fonts/Switzer/Switzer-Regular.ttf);
+}
 body{
-  font-family: 'Inter', sans-serif;
+  font-family: 'Switzer', sans-serif;
 }
 .App {
   text-align: center;
@@ -79,6 +83,7 @@ letter-spacing: 0em;
   font-size: 14px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .Dashboard-items{
@@ -100,6 +105,9 @@ margin-left: 10px;
 }
 .Dashboard-items .active{
   color: white;
+}
+.Dashboard-items .inactive{
+  color: rgba(138, 139, 142, 1);
 }
 .main-scrollable{
   height: 75vh;

@@ -100,6 +100,7 @@ return <div style={{position:"relative"}}>
 <table className="table table-responsive">
 <thead>
 <tr>
+  <th scope="col">S. No.</th>
   <th scope="col">Employee ID</th>
   <th scope="col">Employee Name</th>
   <th scope="col">Date</th>
@@ -119,6 +120,7 @@ return <div style={{position:"relative"}}>
   </td>
 </tr>}
 {AllItems.map((a,i)=><tr key={i}>
+  <td>{i+1}</td>
   <td>{a.employeeId}</td>
   <td>{a.name}</td>
   <td>{moment(a.createdAt).format("Do, MMM YYYY")}</td>
