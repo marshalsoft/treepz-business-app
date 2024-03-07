@@ -3,6 +3,20 @@ data:number[];
 labels:string[];
 }
 
+export interface HistoryProps {
+    _id:string;
+    employeeId:string;
+    employeeName:string;
+    email:string;
+    checkIn:string;
+    checkOut: string;
+    location: string;
+    vehicleName: string;
+    vehicleNumber:string;
+    vehicleTag:string;
+    companyName:string;
+    companyId: string;
+}
 export interface EmployeeProps {
     employeeId:string;
     email:string;

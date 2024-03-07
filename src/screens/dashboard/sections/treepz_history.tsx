@@ -8,7 +8,7 @@ import { Menu } from './HistoryTables/invitations';
 import { Pagination } from '../../../components/pagination';
 import ThreeVerticalDotsIcon from '../../../assets/icons/threeDots';
 import { GetRequest, PostRequest } from '../../../includes/functions';
-import { EmployeeProps } from '../../../includes/types';
+import { EmployeeProps, HistoryProps } from '../../../includes/types';
 import moment from 'moment';
 import {DownloadIcon } from '../../../assets/icons/DownloadBtn';
 import { BaseLoader } from '../../../components/baseloader';
@@ -16,10 +16,10 @@ export default function TreepzHistorySection(){
   const [processing,setProcessing] = useState<boolean>(false)
   const [loading,setLoading] = useState<boolean>(false)
   const [showAddPersonnel,setShowAddPersonnel] = useState<boolean>(false)
-  const [employeeDetails,setEmployeeDetails] = useState<EmployeeProps | null>(null)
+  const [employeeDetails,setEmployeeDetails] = useState<HistoryProps | null>(null)
   const [filterString,setFilterString] = useState<string>("");
   const [showImportPersonnel,setShowImportPersonnel] = useState<boolean>(false)
-  const [listOfEmployees,setListOfemployees] = useState<EmployeeProps[]>([]);
+  const [historyList,setHistoryList] = useState<HistoryProps[]>([]);
   const [startDate,setStartDate] = useState<string>(moment().subtract(3,"M").toISOString());
   const [endDate,setEndDate] = useState<string>(moment().toISOString());
   const [pageSize,setPageSize] = useState<number>(50);
@@ -33,9 +33,9 @@ export default function TreepzHistorySection(){
     setProcessing(false);
     })
 }
-const GetEmployees = (page:number)=>{
+const GetEmployeesHistory = (page:number)=>{
   setLoading(true);
-  GetRequest("admin/users",{
+  GetRequest("admin/attendence/history",{
     page:page,
     pageSize:pageSize,
     startDate : moment(startDate).format("YYYY-MM-DD"),
@@ -44,7 +44,7 @@ const GetEmployees = (page:number)=>{
   setLoading(false);
     if(res.success)
     {
-      setListOfemployees(res.data.users);
+      setHistoryList(res.data);
     }
   })
 }
@@ -54,14 +54,13 @@ const DeleteUser = (id:string)=>{
 }).then((res)=>{
   if(res.success)
   {
-    setListOfemployees(listOfEmployees.filter((a,i)=>a.employeeId !== id));
+    setHistoryList(historyList.filter((a,i)=>a.employeeId !== id));
   }
  })
 }
 const printedSection = useRef() as RefObject<HTMLDivElement>;
 useEffect(()=>{
-GetEmployees(1);
-
+  GetEmployeesHistory(1);
 },[])
 const PrintInfo =()=>{
   if(printedSection.current)
@@ -74,7 +73,7 @@ const PrintInfo =()=>{
   openWindow?.close();
   }
 }
-const AllItems:EmployeeProps[] = listOfEmployees.filter((a,i)=>a.name.includes(filterString));
+const AllItems:HistoryProps[] = historyList.filter((a,i)=>a.employeeName.includes(filterString));
 return <div style={{position:"relative"}}>
 <div className='main-scrollable p-5 pt-0' >
   <div className="heading mb-3">
@@ -103,12 +102,11 @@ return <div style={{position:"relative"}}>
   <th scope="col">S. No.</th>
   <th scope="col">Employee ID</th>
   <th scope="col">Employee Name</th>
-  <th scope="col">Date</th>
   <th scope="col">Email Address</th>
   <th scope="col">Check-In</th>
   <th scope="col">Check-Out</th>
-  <th scope="col">Pick-up Location</th>
-  <th scope="col">Vehicle location</th>
+  <th scope="col">Vehicle Name</th>
+  <th scope="col">Vehicle Number</th>
   <th scope="col">Vehicle tag</th>
   <th scope="col"></th>
 </tr>
@@ -122,14 +120,13 @@ return <div style={{position:"relative"}}>
 {AllItems.map((a,i)=><tr key={i}>
   <td>{i+1}</td>
   <td>{a.employeeId}</td>
-  <td>{a.name}</td>
-  <td>{moment(a.createdAt).format("Do, MMM YYYY")}</td>
+  <td>{a.employeeName}</td>
   <td>{a.email}</td>
-  <td></td>
-  <td></td>
-  <td>{a.location}</td>
-  <td></td>
-  <td></td>
+  <td>{a.checkIn}</td>
+  <td>{a.checkOut}</td>
+  <td>{a.vehicleName}</td>
+  <td>{a.vehicleNumber}</td>
+  <td>{a.vehicleTag}</td>
   <td style={{width:50}}>
    <Menu 
    onValue={(value)=>{
@@ -155,7 +152,7 @@ onFilterRow={(d)=>{
   setPageSize(d);
 }}
 onPage={(d)=>{
-  GetEmployees(d);
+  GetEmployeesHistory(d);
 }}
 />
 {showAddPersonnel && <AddPersonnelComponent 
@@ -178,7 +175,7 @@ onClose={()=>setShowImportPersonnel(false)}
 
 <div className='row pb-3' >
 <div className='col-4' >Employee Name</div>  
-<div className='col-4' >{employeeDetails.name}</div>  
+<div className='col-4' >{employeeDetails.employeeName}</div>  
 <div className='col-4' ></div>  
 </div>
 <div className='row pb-3' >
@@ -194,16 +191,16 @@ onClose={()=>setShowImportPersonnel(false)}
 <div className='col-4' >{employeeDetails.checkOut}</div>  
 </div>
 <div className='row pb-2' >
-<div className='col-4' >Pick-up Location</div>  
-<div className='col-4' >{employeeDetails.PickUpLocation}</div>  
+<div className='col-4' >Vehicle Name</div>  
+<div className='col-4' >{employeeDetails.vehicleName}</div>  
 </div>
 <div className='row pb-2' >
-<div className='col-4' >Vehicle Location</div>  
-<div className='col-4' >{employeeDetails.VehicleLocation}</div>  
+<div className='col-4' >Vehicle Number</div>  
+<div className='col-4' >{employeeDetails.vehicleNumber}</div>  
 </div>
 <div className='row pb-2' >
 <div className='col-4' >Vehicle Tag</div>  
-<div className='col-4' >{employeeDetails.VehicleTag}</div>  
+<div className='col-4' >{employeeDetails.vehicleTag}</div>  
 </div>
 </div>
 <div className='col-3' >
